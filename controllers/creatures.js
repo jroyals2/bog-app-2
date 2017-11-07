@@ -47,7 +47,7 @@ router.put('/:id', async (req, res) => {
 router.delete('/:id', async (req, res) => {
     try {
         const creatureId = req.params.id
-        const creature = Creature.findByIdAndRemove(creatureId)
+        const creature = await Creature.findByIdAndRemove(creatureId)
         res.json({
             msg: "Deleted that bisch"
         })
