@@ -3,6 +3,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const app = express();
+const creaturesController = require('./controllers/creatures.js')
 mongoose.Promise = global.Promise;
 mongoose.connect(process.env.MONGODB_URI, {useMongoClient: true}); //mongodb://localhost/idea-board
 
@@ -18,6 +19,7 @@ console.log('Mongoose default connection error: ' + err);
 
 app.use(bodyParser.json());
 app.use(express.static(__dirname + '/client/build/'));
+app.use("/api/creatures", creaturesController)
 app.get('/', (req,res) => {
 	res.sendFile(__dirname + '/client/build/index.html')
 })
